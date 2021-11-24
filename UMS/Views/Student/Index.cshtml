@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Student>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@{
+    ViewData["Title"] = "Index - Student";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card text-white">
+    <div class="card-header bg-primary">Student List</div>
+    <div class="card-body text-dark">
+        <div align="right">
+            <a asp-controller="Student" asp-action="Create" class="btn btn-info text-white"><i class="fas fa-plus"></i> &nbsp; Create</a>
+        </div>
+        <div class="col-12 border p-3 mt-2">
+        @{ await Html.RenderPartialAsync("_studentIndexTable");}
+        </div>
+    </div>
+
+
+
+
+
+
+    
+

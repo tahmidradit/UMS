@@ -1,0 +1,77 @@
+﻿@model UMS.ViewModels.StudentViewModel
+
+@using UMS.Extentions
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+@{
+    ViewData["Title"] = "Delete - Student";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if(SignInManager.IsSignedIn(User))
+{
+    <div class="card text-white">
+    <div class="card-header bg-primary">Remove Student</div>
+    <div class="card-body text-dark">
+        <div class="">
+    <form id="studentDeleteForm" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-2 text-primary">
+                <label asp-for="Student.FirstName"></label>
+            </div>
+            <div class="col-8">
+                <input type="text" readonly class="form-control" placeholder="Enter firsr Name" asp-for="Student.FirstName" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2 text-primary">
+                <label asp-for="Student.LastName"></label>
+            </div>
+            <div class="col-8">
+                <input type="text" readonly class="form-control mt-2" placeholder="Enter last Name" asp-for="Student.LastName" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2 text-primary">
+                <label asp-for="Student.DepartmentId"></label>
+            </div>
+            <div class="col-8">
+                <select disabled class="form-select mt-2" asp-for="Student.DepartmentId" asp-items="Model.Departments.ToSelectListItem(Model.Student.DepartmentId)"></select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2 text-primary">
+                <label asp-for="Student.Semester"></label>
+            </div>
+            <div class="col-8">
+                <input type="text" readonly class="form-control mt-2" placeholder="Enter semester number" asp-for="Student.Semester" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4 offset-2 text-primary">
+                <input type="button" id="studentDeleteSubmit" class="btn btn-primary form-control mt-2 text-white" value="Remove" />
+            </div>
+            <div class="col-4">
+                <a class="btn btn-dark text-white form-control mt-2" asp-controller="Student" asp-action="Index"><i class="fas fa-arrow-left"></i> &nbsp; Back To List</a>
+            </div>
+        </div>
+    </form>
+</div>
+    </div>
+</div>
+}
+
+else
+{
+    <br />
+        <div class="alert alert-danger text-danger" role="alert">Sign in First to continue !</div> 
+}
+
+@section Scripts{
+    
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+}
