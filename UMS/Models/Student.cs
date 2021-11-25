@@ -13,6 +13,8 @@ namespace UMS.Models
         [Required, StringLength(80), Display(Name = "Last Name")]
         public string LastName { get; set; }
         public Department Department { get; set; }
+
+        [Display(Name = "Department")]
         public int DepartmentId { get; set; }
         public string Semester { get; set; }
 

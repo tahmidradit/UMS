@@ -5,12 +5,15 @@ $(document).ready(function(){
     var department = $('#department').val();
     var semester = $('#semester').val();
 
-    $('#studentCreateSubmit').click(function(){
+    $('#studentCreateSubmit').click(function () {
 
-    
+        if ($('#firstName').val() == "" || $('#lastName').val() == "" || $('#department').val() == "" || $('#semester').val() == "") {
 
-        if (firstName != "" && lastName != "" && department != "" && semester != "") {
+            alert("You can't leave any fields empty !");
+            
+        }
 
+        else {
             $.ajax({
                 type: 'POST',
                 data: $('#studentCreateForm').serialize(),
@@ -23,10 +26,6 @@ $(document).ready(function(){
             });
         }
 
-        else {
-            alert("You can't leave any fields empty !");
-        }
-        
     });
 
     $('#studentEditSubmit').click(function(){

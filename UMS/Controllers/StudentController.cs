@@ -33,7 +33,7 @@ namespace UMS.Controllers
             return View(studentViewModel);
         }
 
-        [HttpPost, ValidateAntiForgeryToken, ActionName("Create")]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Student student)
         {
             if (ModelState.IsValid)
